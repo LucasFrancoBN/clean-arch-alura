@@ -1,6 +1,7 @@
 package br.com.alura.codechella.domain.entities.usuario;
 
 import br.com.alura.codechella.domain.Endereco;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -18,6 +19,9 @@ public class Usuario {
     public Usuario(String cpf, String nome, LocalDate nascimento, String email) {
         if(cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
             throw new IllegalArgumentException("Cpf no padrão incorreto");
+        }
+        if(LocalDate.now().getYear() - nascimento.getYear() < 18) {
+            throw new IllegalArgumentException("Usuário precisa ter mais de 18 anos");
         }
 
         this.cpf = cpf;
