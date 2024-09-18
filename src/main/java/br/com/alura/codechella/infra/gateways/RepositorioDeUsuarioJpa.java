@@ -28,4 +28,10 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
                 .map(mapper::toDomain)
                 .toList();
     }
+
+    @Override
+    public void deletarUsuarioPorCpf(String cpf) {
+        UsuarioEntity usuarioBuscadoCpf = repositorio.findByCpf(cpf);
+        repositorio.deleteById(usuarioBuscadoCpf.getId());
+    }
 }

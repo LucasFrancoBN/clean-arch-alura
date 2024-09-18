@@ -1,8 +1,10 @@
 package br.com.alura.codechella.infra.controller;
 
 import br.com.alura.codechella.application.usecases.CriarUsuario;
+import br.com.alura.codechella.application.usecases.DeletarUsuario;
 import br.com.alura.codechella.application.usecases.ListarUsuarios;
 import br.com.alura.codechella.domain.entities.usuario.Usuario;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +14,16 @@ import java.util.List;
 public class UsuarioController {
     private final CriarUsuario criarUsuario;
     private final ListarUsuarios listarUsuarios;
+    private final DeletarUsuario deletarUsuario;
 
-    public UsuarioController(CriarUsuario criarUsuario, ListarUsuarios listarUsuarios) {
+    public UsuarioController(
+            CriarUsuario criarUsuario,
+            ListarUsuarios listarUsuarios,
+            DeletarUsuario deletarUsuario
+    ) {
         this.criarUsuario = criarUsuario;
         this.listarUsuarios = listarUsuarios;
+        this.deletarUsuario = deletarUsuario;
     }
 
     @PostMapping
@@ -46,5 +54,11 @@ public class UsuarioController {
                             u.getEmail()
                     )
                 ).toList();
+    }
+
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable String cpf) {
+        this.deletarUsuario.deletarUsario(cpf);
+        return ResponseEntity.noContent().build();
     }
 }
