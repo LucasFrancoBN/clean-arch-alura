@@ -4,7 +4,6 @@ import br.com.alura.codechella.application.gateways.RepositorioDeUsuario;
 import br.com.alura.codechella.domain.entities.usuario.Usuario;
 import br.com.alura.codechella.infra.persistence.UsuarioEntity;
 import br.com.alura.codechella.infra.persistence.UsuarioRepository;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
