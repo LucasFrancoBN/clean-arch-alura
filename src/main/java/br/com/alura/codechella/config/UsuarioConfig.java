@@ -1,6 +1,7 @@
 package br.com.alura.codechella.config;
 
 import br.com.alura.codechella.application.gateways.RepositorioDeUsuario;
+import br.com.alura.codechella.application.usecases.AtualizarUsuario;
 import br.com.alura.codechella.application.usecases.CriarUsuario;
 import br.com.alura.codechella.application.usecases.DeletarUsuario;
 import br.com.alura.codechella.application.usecases.ListarUsuarios;
@@ -35,5 +36,10 @@ public class UsuarioConfig {
     @Bean
     DeletarUsuario deletarUsuario(RepositorioDeUsuario repositorioDeUsuario) {
         return new DeletarUsuario(repositorioDeUsuario);
+    }
+
+    @Bean
+    AtualizarUsuario atualizarUsuario(RepositorioDeUsuario repositorioDeUsuario) {
+        return new AtualizarUsuario(repositorioDeUsuario);
     }
 }

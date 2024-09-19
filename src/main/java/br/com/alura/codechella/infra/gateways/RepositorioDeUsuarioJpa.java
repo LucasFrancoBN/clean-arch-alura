@@ -34,4 +34,17 @@ public class RepositorioDeUsuarioJpa implements RepositorioDeUsuario {
         UsuarioEntity usuarioBuscadoCpf = repositorio.findByCpf(cpf);
         repositorio.deleteById(usuarioBuscadoCpf.getId());
     }
+
+    @Override
+    public Usuario atualizarUsuarioPorCpf(String cpf, Usuario usuario) {
+        UsuarioEntity usuarioBuscadoCpf = repositorio.findByCpf(cpf);
+
+        if(usuarioBuscadoCpf == null) {
+            throw new RuntimeException("CPF do usuário não encontrado");
+        }
+
+        usuarioBuscadoCpf.setNome(usuario.getNome());
+
+        return mapper.toDomain(repositorio.save(usuarioBuscadoCpf));
+    }
 }
